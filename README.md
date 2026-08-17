@@ -1,167 +1,239 @@
 <div align="center">
 
-# 🌍 TerraWatch
+# 🌿 TerraNest
 
-### a cozy little city & disaster watchtower ☁️🕯️
+### a simple little dashboard for cities, weather & disasters
 
-*live weather, disaster tracking, and a soft interactive map — all in one gentle dashboard*
+*keeping useful city information in one place, without making it complicated.*
 
 <br/>
 
-![Python](https://img.shields.io/badge/Python-16A34A?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0EA5E9?style=for-the-badge&logo=fastapi&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-DC2626?style=for-the-badge&logo=streamlit&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-F59E0B?style=for-the-badge&logo=sqlite&logoColor=white)
-
-![Made with love](https://img.shields.io/badge/made%20with-%F0%9F%A4%8D%20love-ff69b4?style=flat-square)
-![Tests](https://img.shields.io/badge/tests-20%20passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)
-![Status](https://img.shields.io/badge/status-cozy%20%26%20active-blueviolet?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange?style=flat-square)
+![Python](https://img.shields.io/badge/Python-16A34A?style=for-the-badge\&logo=python\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0EA5E9?style=for-the-badge\&logo=fastapi\&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-DC2626?style=for-the-badge\&logo=streamlit\&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-F59E0B?style=for-the-badge\&logo=sqlite\&logoColor=white)
 
 </div>
 
 ---
 
-## 🫖 What is this?
+## 🌱 What is TerraNest?
 
-TerraWatch is a little home for scattered information — the kind you'd otherwise have to hunt down across five different tabs. One place for **city weather**, one place for **disaster tracking**, and a **map** that ties it all together, warmly.
+TerraNest started with a pretty simple idea — what if city information, weather and disaster data could all be checked from the same place?
 
-No need to look up coordinates yourself either — TerraWatch quietly figures those out for you in the background. ✨
+The project has a **FastAPI backend** that handles the data and APIs, along with a **Streamlit dashboard** where everything can actually be explored.
 
----
-
-## 🌤️ What it does
-
-- 🏙️ **Track cities** — add, search, filter by state or temperature, and keep tabs on the ones you care about
-- ☁️ **Pull live weather** — just type a city name, TerraWatch fetches temperature, humidity & conditions from Open-Meteo
-- 🚨 **Log disasters** — type, severity, affected population, status — filterable and easy to scan
-- 📍 **Auto-geolocation** — no manual lat/long typing, ever
-- 🗺️ **Interactive map** — blue pins for cities, color-coded pins for disasters by severity
-- 📊 **Analytics dashboard** — gentle little charts for temperature spread, disaster types, and more
+You can add cities, get their weather, record disasters, filter the data and see it all on an interactive map. Coordinates are looked up automatically, so there's no need to manually enter latitude and longitude every time.
 
 ---
 
-## 🧸 Tech stack
+## ☁️ What can it do?
 
-| Layer | Tools |
-|---|---|
-| Backend | FastAPI · Uvicorn · Pydantic |
-| Database | SQLite + SQLAlchemy |
-| Frontend | Streamlit · Folium |
-| External data | Open-Meteo Weather & Geocoding APIs |
-| Testing | Pytest · FastAPI TestClient |
+### 🏙️ Cities
+
+You can add and manage cities and keep track of things like:
+
+* city and state
+* temperature
+* humidity
+* weather conditions
+* latitude and longitude
+
+Cities can also be searched and filtered based on different parameters.
+
+### 🌦️ Weather
+
+Enter a city name and the application takes care of the rest.
+
+It uses the **Open-Meteo API** to find the location and fetch current weather information, including temperature, humidity and conditions.
+
+### 🚨 Disasters
+
+Disaster records can be added with details such as:
+
+* disaster type
+* severity
+* affected population
+* status
+* location
+
+The records can then be filtered and managed through the API.
+
+### 🗺️ Map
+
+The map is probably one of my favourite parts of the project.
+
+Cities and disasters are displayed together using **Folium**, with different markers making it easier to get a quick idea of what's happening where.
+
+### 📊 Statistics
+
+There are also separate statistics endpoints and dashboard visualisations for things like city temperatures and disaster data.
+
+---
+
+## 🛠️ Tech used
+
+| Part          | Technology                     |
+| ------------- | ------------------------------ |
+| Backend       | FastAPI, Uvicorn, Pydantic     |
+| Database      | SQLite, SQLAlchemy             |
+| Frontend      | Streamlit                      |
+| Maps          | Folium, Streamlit-Folium       |
+| External APIs | Open-Meteo Weather & Geocoding |
+| Testing       | Pytest, FastAPI TestClient     |
 
 ---
 
 ## 📁 Project structure
 
 ```text
-City_information_project/
-├── app.py                     # FastAPI entry point
+terraverse-main/
+│
+├── app.py
 ├── database.py
 ├── models.py
 ├── validators.py
 ├── weather_service.py
+│
 ├── routes/
 │   ├── city_routes.py
 │   └── disaster_routes.py
+│
 ├── frontend/
 │   └── streamlit_app.py
+│
 └── tests/
     └── test_api.py
 ```
 
 ---
 
-## 🚀 Getting started
+## 🚀 Running it locally
+
+Clone the repository and move into the project:
 
 ```bash
-# clone & enter
 git clone <repository-url>
-cd City_information_project
+cd terraverse-main
+```
 
-# set up a cozy little virtual environment
+Create a virtual environment:
+
+```bash
 python -m venv venv
-.\venv\Scripts\Activate.ps1     # Windows PowerShell
+```
 
-# install everything
+On Windows PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+Install the dependencies:
+
+```bash
 pip install -r requirements.txt
 pip install streamlit folium streamlit-folium
 ```
 
-Then, in two terminals:
+### Start the backend
 
 ```bash
-# terminal 1 — backend
 uvicorn app:app --reload
-# → http://127.0.0.1:8000
+```
 
-# terminal 2 — frontend
+The API will be running at:
+
+```text
+http://127.0.0.1:8000
+```
+
+### Start the dashboard
+
+Open another terminal and run:
+
+```bash
 streamlit run frontend/streamlit_app.py
 ```
 
-Interactive API docs live at `http://127.0.0.1:8000/docs` 📖
+The FastAPI documentation is also available at:
+
+```text
+http://127.0.0.1:8000/docs
+```
 
 ---
 
-## 🔌 API at a glance
+## 🔌 API endpoints
 
-**Cities**
-```http
-POST   /cities              # add a city (coordinates resolved automatically)
-GET    /cities               ?state=  &min_temperature=
+### Cities
+
+```text
+POST   /cities
+GET    /cities
 GET    /cities/{id}
 PUT    /cities/{id}
 DELETE /cities/{id}
-POST   /cities/weather      # create a city from just a name — live weather included
+POST   /cities/weather
 GET    /cities/statistics
 ```
 
-**Disasters**
-```http
-POST   /disasters           # coordinates resolved automatically too
-GET    /disasters            ?state=  &disaster_type=  &severity=  &status=
+### Disasters
+
+```text
+POST   /disasters
+GET    /disasters
 GET    /disasters/{id}
 PUT    /disasters/{id}
 DELETE /disasters/{id}
 GET    /disasters/statistics/summary
 ```
 
-Full field lists, request/response examples, and error codes are all documented live in the `/docs` Swagger UI — no need to duplicate them here. 🍃
+The `/docs` page contains the complete request and response documentation.
 
 ---
 
-## ✅ Testing
+## 🧪 Tests
+
+The project uses **Pytest** and FastAPI's `TestClient`.
+
+Run the tests with:
 
 ```bash
 python -m pytest -q
 ```
 
-20 tests, all passing, covering CRUD, filtering, and statistics for both cities and disasters.
+**20 tests passing** ✅
+
+The tests cover the main city and disaster operations, including CRUD, filtering and statistics.
 
 ---
 
-## 🌱 Roadmap
+## 🌿 Things I'd like to add later
 
-- 🔐 Authentication
-- 🔮 Risk prediction
-- 🔔 Notifications
-- ☁️ Cloud deployment
+There are a few directions this could go in the future:
+
+* 🔐 Authentication
+* 🔮 Disaster risk prediction
+* 🔔 Notifications
+* ☁️ Cloud deployment
 
 ---
 
-## 💌 Author
+## 💌 A little note
 
-Made with warm hands and a lot of tea by **Thejaswini** 🕊️
+This was built as a project to get more comfortable with **FastAPI, databases, APIs and building something that actually has a frontend to interact with**.
+
+There were definitely a few moments of *"why is this not working"* along the way, but that's part of the fun. :)
 
 ---
 
 <div align="center">
 
-### 🐾 thanks for stopping by
+<img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" width="300">
 
-![cute cat gif](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
+### 🌙 thanks for stopping by!
 
-*monitor gently, respond kindly* 🌙
+*made by Thejaswini*
 
 </div>
