@@ -152,7 +152,7 @@ python -m pytest -q
 
 ## 💌 Author
 
-Made with warm hands and a lot of tea by **SiriNandinii** 🕊️
+Made with warm hands and a lot of tea by **Thejaswini** 🕊️
 
 ---
 
